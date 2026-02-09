@@ -2,8 +2,8 @@ name: Package and publish extension
 
 on:
   push:
-    tags:
-      - "v*"
+    branches:
+      - "main"
   workflow_dispatch:
     inputs:
       publish_now:
@@ -19,6 +19,33 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set CalVer in manifest
+        id: calver
+        run: |
+          set -euo pipefail
+
+          year=$(date -u +%Y)
+          month=$(date -u +%-m)
+          day=$(date -u +%-d)
+          build="${GITHUB_RUN_NUMBER}"
+
+          if [ "$build" -gt 65535 ]; then
+            echo "GITHUB_RUN_NUMBER exceeds Chrome manifest segment max (65535): $build"
+            exit 1
+          fi
+
+          calver="${year}.${month}.${day}.${build}"
+          version_name="${year}.${month}.${day}+sha.${GITHUB_SHA::7}"
+
+          jq --arg version "$calver" --arg version_name "$version_name" \
+            '.version = $version | .version_name = $version_name' \
+            manifest.json > manifest.json.tmp
+          mv manifest.json.tmp manifest.json
+
+          echo "version=$calver" >> "$GITHUB_OUTPUT"
+          echo "version_name=$version_name" >> "$GITHUB_OUTPUT"
+          echo "Using manifest version: $calver"
 
       - name: Package extension
         run: |
@@ -44,7 +71,7 @@ jobs:
       - name: Upload packaged artifact
         uses: actions/upload-artifact@v4
         with:
-          name: chrome-extension-${{ github.ref_name }}
+          name: chrome-extension-${{ steps.calver.outputs.version }}
           path: dist/extension.zip
 
       - name: Get Chrome Web Store access token
