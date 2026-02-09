@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "Keyboard Navigation Shortcuts",
+  "description": "Customizable keyboard shortcuts for back/forward navigation and tab switching.",
+  "version": "1.0.0",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["tabs"],
+  "commands": {
+    "go-back": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+1",
+        "mac": "Command+Shift+1"
+      },
+      "description": "Go back in the current tab"
+    },
+    "go-forward": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+2",
+        "mac": "Command+Shift+2"
+      },
+      "description": "Go forward in the current tab"
+    },
+    "switch-tab-left": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+3",
+        "mac": "Command+Shift+3"
+      },
+      "description": "Switch to the tab on the left"
+    },
+    "switch-tab-right": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+4",
+        "mac": "Command+Shift+4"
+      },
+      "description": "Switch to the tab on the right"
+    }
+  },
+  "options_page": "options.html"
+}

@@ -1,0 +1,21 @@
+{
+  "name": "chrome-keyboard-shortcuts",
+  "version": "0.0.1",
+  "description": "This extension provides 4 configurable keyboard commands:",
+  "scripts": {
+    "lint": "npx prettier . --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riccardopll/chrome-keyboard-shortcuts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/riccardopll/chrome-keyboard-shortcuts/issues"
+  },
+  "homepage": "https://github.com/riccardopll/chrome-keyboard-shortcuts#readme",
+  "devDependencies": {
+    "prettier": "3.8.1"
+  }
+}

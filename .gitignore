@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Build/package artifacts
+dist/
+*.zip
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+
+# Local environment files
+.env
+.env.*
+
+# OS/editor files
+.DS_Store
+.idea/
+.vscode/
