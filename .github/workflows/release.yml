@@ -5,12 +5,6 @@ on:
     branches:
       - "main"
   workflow_dispatch:
-    inputs:
-      publish_now:
-        description: "Publish to Chrome Web Store after upload"
-        required: true
-        default: true
-        type: boolean
 
 permissions:
   contents: write
@@ -93,6 +87,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get Chrome Web Store access token
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         id: auth
         env:
           CHROME_CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
@@ -118,6 +113,7 @@ jobs:
           echo "access_token=$access_token" >> "$GITHUB_OUTPUT"
 
       - name: Upload package to Chrome Web Store
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         env:
           ACCESS_TOKEN: ${{ steps.auth.outputs.access_token }}
           CHROME_PUBLISHER_ID: ${{ secrets.CHROME_PUBLISHER_ID }}
@@ -132,7 +128,7 @@ jobs:
             "https://chromewebstore.googleapis.com/upload/v2/publishers/${CHROME_PUBLISHER_ID}/items/${CHROME_EXTENSION_ID}:upload"
 
       - name: Publish extension in Chrome Web Store
-        if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.publish_now == 'true' }}
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         env:
           ACCESS_TOKEN: ${{ steps.auth.outputs.access_token }}
           CHROME_PUBLISHER_ID: ${{ secrets.CHROME_PUBLISHER_ID }}
