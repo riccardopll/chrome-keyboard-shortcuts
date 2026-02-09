@@ -36,7 +36,7 @@ jobs:
           fi
 
           calver="${year}.${month}.${day}.${build}"
-          version_name="${year}.${month}.${day}+sha.${GITHUB_SHA::7}"
+          version_name="${calver}"
 
           jq --arg version "$calver" --arg version_name "$version_name" \
             '.version = $version | .version_name = $version_name' \
