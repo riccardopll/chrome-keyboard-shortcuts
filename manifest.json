@@ -12,33 +12,32 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["tabs"],
   "commands": {
     "go-back": {
       "suggested_key": {
-        "default": "Ctrl+Shift+1",
-        "mac": "Command+Shift+1"
+        "default": "Ctrl+K",
+        "mac": "Command+K"
       },
       "description": "Go back in the current tab"
     },
     "go-forward": {
       "suggested_key": {
-        "default": "Ctrl+Shift+2",
-        "mac": "Command+Shift+2"
+        "default": "Ctrl+L",
+        "mac": "Command+L"
       },
       "description": "Go forward in the current tab"
     },
     "switch-tab-left": {
       "suggested_key": {
-        "default": "Ctrl+Shift+3",
-        "mac": "Command+Shift+3"
+        "default": "Ctrl+Shift+K",
+        "mac": "Command+Shift+K"
       },
       "description": "Switch to the tab on the left"
     },
     "switch-tab-right": {
       "suggested_key": {
-        "default": "Ctrl+Shift+4",
-        "mac": "Command+Shift+4"
+        "default": "Ctrl+Shift+L",
+        "mac": "Command+Shift+L"
       },
       "description": "Switch to the tab on the right"
     }
