@@ -1,5 +1,7 @@
 # Keyboard Navigation Shortcuts
 
+[![CI](https://github.com/riccardopll/chrome-keyboard-shortcuts/actions/workflows/ci-package.yml/badge.svg?branch=main)](https://github.com/riccardopll/chrome-keyboard-shortcuts/actions/workflows/ci-package.yml)
+
 [Chrome Web Store](https://chromewebstore.google.com/detail/keyboard-navigation-short/dgkjambikmmfmfmilabkammgbdjgffmk)
 
 Customizable keyboard shortcuts for back/forward navigation and tab switching in Chrome-based browsers.
